@@ -40,14 +40,23 @@ def stops_scrapper():
 
 
 def fare_type():
-    fare_type = ['acs', 'gns', 'vvs']
+    fare_type = ['acs','gns', 'vvs']
     for fare in fare_type:
         fare_url = 'http://www.mybmtc.com/kn/ac-service?fareid='+fare+'&qt-home_quick_tab_bottom=2'
         fare_page = urllib2.urlopen(fare_url)
         fare_soup = BeautifulSoup(fare_page, 'html.parser')
         fare_table = fare_soup.find('table')
         fare_body = fare_table.find('tbody')
-        print fare_body.text
+        fare_list_raw = str(fare_body.text)
+        fare_list =  fare_list_raw.split('\n')
+        fare_list = fare_list[1:len(fare_list)-1]
+        print fare_list
+        for i in range(1,len(fare_list)+1):
+            bar = fare_list[i-1][len(str(i)):]
+            x = bar.split('.')
+            for k in range(0,len(x)):
+                x[k] = int(x[k])
+            print x
         print '#######'
 
 #
