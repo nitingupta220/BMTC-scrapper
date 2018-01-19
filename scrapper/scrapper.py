@@ -5,6 +5,7 @@ from googletrans import Translator
 
 translator = Translator()
 
+final_result = []
 
 def stops_scrapper():
     stops_page = 'http://www.mybmtc.com/kn/bus_stations'
@@ -29,14 +30,12 @@ def stops_scrapper():
             i+=3
             address=stops_array[i]
             stop["address"] = address
+            stop["type"] = "stops"
             json_string=json.dumps(stop)
             print json_string
             stops_list.append(json_string)
         i+=1
-    stops["stops_list"]=(stops_list)
-    #print stops
-    with open('./json_storage/stops.json', 'w') as outfile:
-        json.dump(stops, outfile)
+    final_result.append(stops_list)
 
 
 def fare_type():
@@ -67,9 +66,8 @@ def fare_type():
             s=json.dumps(m)
             result.append(s)
         d['fares'] = result
-        with open('./json_storage/fairs.json', 'w') as outfile:
-            json.dump(d, outfile)
-        print '#######'
+        final_result.append(result)
+
 
 
 def route_timings():
@@ -86,8 +84,11 @@ def route_timings():
         print '####'
 
 
-#stops_scrapper()
+stops_scrapper()
 
-#fare_type()
+fare_type()
 
-route_timings()
+#route_timings()
+
+with open('./json_storage/fairs.json', 'w') as outfile:
+    json.dump(final_result, outfile)
