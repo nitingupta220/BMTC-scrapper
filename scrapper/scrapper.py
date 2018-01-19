@@ -51,29 +51,43 @@ def fare_type():
         fare_list =  fare_list_raw.split('\n')
         fare_list = fare_list[1:len(fare_list)-1]
         print fare_list
+        result=[]
+        d={}
         for i in range(1,len(fare_list)+1):
             bar = fare_list[i-1][len(str(i)):]
             x = bar.split('.')
             for k in range(0,len(x)):
                 x[k] = int(x[k])
             print x
+            m={}
+            m['type']=fare_type
+            m['adult'] =x[0]
+            m['chld']=x[1]
+            m['senior_citizen']=x[2]
+            s=json.dumps(m)
+            result.append(s)
+        d['fares'] = result
+        with open('./json_storage/fairs.json', 'w') as outfile:
+            json.dump(d, outfile)
         print '#######'
 
-#
-# def route_timings():
-#     for route in range(1, 3000):
-#         routes_url = 'http://www.mybmtc.com/route/schedule/' + str(route) + '/C?width=600&height=550&iframe=true'
-#         routes_page = urllib2.urlopen(routes_url)
-#         routes_soup = BeautifulSoup(routes_page, 'html.parser')
-#         box = routes_soup.find('tr', attrs={'class': 'odd'})
-#         list = box.find_next('tr', attrs={'class': 'odd'})
-#         header = box.find('span', attrs={'class': 'subheader-label'})
-#         ul = list.find('ul', attrs={'class': 'routestime'})
-#         print header.text
-#         print ul.text
-#         print '####'
+
+def route_timings():
+    for route in range(1, 3000):
+        routes_url = 'http://www.mybmtc.com/route/schedule/' + str(route) + '/C?width=600&height=550&iframe=true'
+        routes_page = urllib2.urlopen(routes_url)
+        routes_soup = BeautifulSoup(routes_page, 'html.parser')
+        box = routes_soup.find('tr', attrs={'class': 'odd'})
+        list = box.find_next('tr', attrs={'class': 'odd'})
+        header = box.find('span', attrs={'class': 'subheader-label'})
+        ul = list.find('ul', attrs={'class': 'routestime'})
+        print header.text
+        print ul.text
+        print '####'
 
 
 #stops_scrapper()
 
-fare_type()
+#fare_type()
+
+route_timings()
