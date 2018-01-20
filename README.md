@@ -27,5 +27,9 @@ Go into scrapper
 ```
 python scrapper.py
 ```
-
+### And then came out of the scrapper to the main folder and run 
+```
+live-server
+```
+It will open your index.html file and you can see the data then.
 
