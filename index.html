@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bmtc">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>Starter Template for Bootstrap</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+
+    <!-- Custom styles for this template -->
+
+</head>
+
+
+<body ng-controller="bmtcController">
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+    </nav>
+
+    <section id="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-lg-2 text-center">
+                    <img src="bmtc_logo.png" alt="">
+                    <h5>Bangalore Metro Transport Corporation</h5>
+                    <input type="text" class="form-control">
+                    <p>Search</p>
+                </div>
+                <div class="col-md-7 col-sm-7 col-lg-7" id="tabs">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-fares-tab" data-toggle="pill" href="#pills-fares" role="tab" aria-controls="pills-profile" aria-selected="false">Fares</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-timetable-tab" data-toggle="pill" href="#pills-timetable" role="tab" aria-controls="pills-contact" aria-selected="false">Routes & Timetable</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-stops-tab" data-toggle="pill" href="#pills-stops" role="tab" aria-controls="pills-contact" aria-selected="false">Bus Stops</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        
+                        <div class="tab-pane fade show active" id="pills-fares" role="tabpanel" aria-labelledby="pills-fares-tab">
+                            <table class="table table-hover">
+                                <h5>Ac Fares</h5>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Senior Citizen</th>
+                                        <th scope="col">Adult</th>
+                                        <th scope="col">Child</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="fare in fares.acs">
+                                        <th scope="row" ng-cloak>{{$index + 1}}</th>
+                                        <td ng-cloak>{{fare.senior_citizen}}</td>
+                                        <td ng-cloak>{{fare.adult}}</td>
+                                        <td ng-cloak>{{fare.chld}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-hover">
+                                <h5>General Fares</h5>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Senior Citizen</th>
+                                        <th scope="col">Adult</th>
+                                        <th scope="col">Child</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="fare in fares.gns">
+                                        <th scope="row" ng-cloak>{{$index + 1}}</th>
+                                        <td ng-cloak>{{fare.senior_citizen}}</td>
+                                        <td ng-cloak>{{fare.adult}}</td>
+                                        <td ng-cloak>{{fare.chld}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-hover">
+                                <h5>VVS Fares</h5>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Senior Citizen</th>
+                                        <th scope="col">Adult</th>
+                                        <th scope="col">Child</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="fare in fares.vvs">
+                                        <th scope="row" ng-cloak>{{$index + 1}}</th>
+                                        <td ng-cloak>{{fare.senior_citizen}}</td>
+                                        <td ng-cloak>{{fare.adult}}</td>
+                                        <td ng-cloak>{{fare.chld}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="pills-timetable" role="tabpanel" aria-labelledby="pills-timetable-tab">
+                            <div ng-repeat="route in route_timings">
+                                <h5 ng-cloak>{{route.stations}}</h5>
+                                <ul ng-repeat="timings in route.timings track by $index">
+                                    <li ng-cloak>{{timings}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane fade" id="pills-stops" role="tabpanel" aria-labelledby="pills-stops-tab">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="stop in stops">
+                                        <th scope="row" ng-cloak>{{$index + 1}}</th>
+                                        <td ng-cloak>{{stop.name}}</td>
+                                        <td ng-cloak>{{stop.address}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-lg-3">
+                    <h4 class="text-right">Help</h4>
+                    <div class="container text-center" id="search">
+                        <div class="row">
+                            <form>
+                                <div class="form-group">
+                                    <label style="color: white;">Select Bus Type</label>
+                                    <input type="text" class="form-control" placeholder="From">
+                                </div>
+
+                                <button type="submit" class="btn btn-success" style="float: right;">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
