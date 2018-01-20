@@ -16,11 +16,16 @@ Go into the BMTC-scrapper and then into scrapper
 
 ``` 
 pip install -r requirements.txt
+npm install live-server -g
+or 
+sudo npm install live-server -g
 
 ```
 Go into scrapper
 
-###Run
+### Run
 ```
 python scrapper.py
 ```
+
+
