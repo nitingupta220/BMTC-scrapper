@@ -3,6 +3,6 @@ bs4==0.0.1
 certifi==2017.11.5
 chardet==3.0.4
 googletrans==2.2.0
-idna==2.6
+idna==2.8
 requests>=2.20.0
 urllib3==1.22
